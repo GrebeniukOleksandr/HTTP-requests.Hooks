@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchImages } from "../../api"; // ✅ Переконайся, що імпорт правильний
+import { fetchImages } from "../../api";
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
@@ -25,9 +25,9 @@ export default function App() {
     fetchImages(query, page, controller.signal)
       .then((data) => {
         if (page === 1) {
-          setImages(data); // ✅ Якщо це новий пошук, заміняємо список
+          setImages(data);
         } else {
-          setImages((prev) => [...prev, ...data]); // ✅ Якщо це пагінація, додаємо
+          setImages((prev) => [...prev, ...data]);
         }
       })
       .catch((err) => {
@@ -41,9 +41,9 @@ export default function App() {
   }, [query, page]);
 
   const handleSearch = (newQuery) => {
-    if (query === newQuery) return; // Запобігаємо повторному запиту
+    if (query === newQuery) return;
     setQuery(newQuery);
-    setImages([]); // ✅ Очищаємо старі зображення перед новим пошуком
+    setImages([]);
     setPage(1);
   };
 
